@@ -16,8 +16,25 @@ public class BasicsLesson {
     public String getSeason(String month) {
         String result = null;
         switch (month) {
-            case "ЯНВАРЬ":
+            case "ЯНВАРЬ" :
+            case "ФЕВРАЛЬ" :
+            case "ДЕКАБРЬ" :
                 result = "ЗИМА";
+                break;
+            case "МАРТ" :
+            case "АПРЕЛЬ" :
+            case "МАЙ" :
+                result = "ВЕСНА";
+                break;
+            case "ИЮНЬ" :
+            case "ИЮЛЬ" :
+            case "АВГУСТ" :
+                result = "ЛЕТО";
+                break;
+            case "СЕНТЯБРЬ" :
+            case "ОКТЯБРЬ" :
+            case "НОЯБРЬ" :
+                result = "ОСЕНЬ";
                 break;
         }
 
