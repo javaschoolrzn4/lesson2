@@ -15,11 +15,6 @@ public class BasicsLesson {
      */
     public String getSeason(String month) {
         String result = null;
-        switch (month) {
-            case "ЯНВАРЬ":
-                result = "ЗИМА";
-                break;
-        }
 
         return result;
     }
