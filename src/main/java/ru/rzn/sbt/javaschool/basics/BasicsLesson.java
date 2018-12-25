@@ -36,6 +36,8 @@ public class BasicsLesson {
             case "НОЯБРЬ" :
                 result = "ОСЕНЬ";
                 break;
+            default:
+                result = "НЕТ ДАННЫХ";
         }
 
         return result;
@@ -54,7 +56,13 @@ public class BasicsLesson {
      * </ul>
      */
     public void xLittleIndians(int x, Logger log) {
-
+        for (int i = x; i > 0 ; i--) {
+            if(i == 1) {
+                log.log(i + " little indian");
+            } else {
+                log.log(i + " little indians");
+            }
+        }
     }
 
     /**
@@ -66,7 +74,9 @@ public class BasicsLesson {
      * Получите от сервиса все строки и отправьте их в лог.
      */
     public void logEverything(StringSupplier supplier, Logger log) {
-
+        while (supplier.hasNext()) {
+            log.log(supplier.next());
+        }
     }
 
     /**
@@ -76,7 +86,7 @@ public class BasicsLesson {
      * буквы Р на Л.
      */
     public String littleKid(String word) {
-        String result = null;
+        String result = word.replace("Р", "Л");
         return result;
     }
 
@@ -98,7 +108,7 @@ public class BasicsLesson {
      * Создайте объект нового класса, проинициализировав все его поля и верните его из метода {@link #newClass()}.<br/>
      */
     public Object newClass() {
-        Object o = null;
+        Object o = new LethalWeapon("red", 1.2, 4);
 
         return o;
     }
@@ -127,8 +137,9 @@ public class BasicsLesson {
      * @return
      */
     public String stringExercise1(String input) {
-
-        return "";
+        String ret;
+        ret = input.substring(2, input.indexOf("S") + 1).toUpperCase();
+        return ret;
     }
 
     /**
@@ -139,8 +150,19 @@ public class BasicsLesson {
      * @return
      */
     public int stringExercise2(String input) {
-
-        return 0;
+        int arrRes[] = {
+                input.length(),
+                input.length() - input.replaceAll(",", "").length(),
+                input.length() - input.replaceAll("-", "").length(),
+                input.indexOf("R"),
+                input.lastIndexOf("L"),
+                input.trim().length() - input.trim().replaceAll(" ", "").length()
+        };
+        int result = 1;
+        for (int i = 0; i < arrRes.length; i++) {
+            result *= arrRes[i];
+        }
+        return result;
     }
 
     /**
@@ -155,7 +177,38 @@ public class BasicsLesson {
      * @return
      */
     public String stringExercise3(String input) {
-
+        String[] arrWords = input.trim().split(" ");
+        int idxHello = input.indexOf("Hello");
+        if (arrWords.length == 3 && idxHello != -1) {
+//            System.out.println(arrWords[0] + " " + arrWords[arrWords.length -1]);
+            input = arrWords[0] + " " + arrWords[arrWords.length -1];
+        }
+        if (arrWords.length == 2 && idxHello != -1) {
+            char[] in = input.toCharArray();
+            int begin = 0;
+            int end = in.length - 1;
+            char temp;
+            while (end > begin) {
+                temp = in[begin];
+                in[begin] = in[end];
+                in[end] = temp;
+                end--;
+                begin++;
+            }
+            input = new String(in);
+        }
+        if (arrWords.length == 3 && input.contains("Goodbye")) {
+            String lastWord = arrWords[arrWords.length -1];
+            if (lastWord.indexOf("!") == lastWord.length() - 1) {
+                lastWord = lastWord.substring(0, lastWord.length() - 1);
+            } else {
+                lastWord += "!";
+            }
+            input = arrWords[0] + " " + lastWord;
+        }
+        if (arrWords.length == 2 && input.contains("Goodbye")) {
+            input = (arrWords[1] + " " + arrWords[0]).toLowerCase();
+        }
         return input;
     }
 }
