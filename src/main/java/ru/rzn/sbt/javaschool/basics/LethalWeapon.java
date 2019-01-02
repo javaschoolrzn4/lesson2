@@ -10,14 +10,15 @@ public class LethalWeapon {
     private final long serial;
 
     public LethalWeapon() {
-        this.serial = 2;
+        this.serial = nextSerial;
+        nextSerial++;
     }
 
     public LethalWeapon(String colorValue, Double powerValue, int roundsLeftValue) {
+        this();
         this.color = colorValue;
         this.power = powerValue;
         this.roundsLeft = roundsLeftValue;
-        this.serial = 2;
     }
 
 
